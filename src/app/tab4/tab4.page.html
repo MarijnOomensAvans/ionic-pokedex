@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Caught pokemon</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list id="container">
+    <ion-item style="margin-right: 5%" *ngFor="let pok of pokemon">
+      <ion-label>{{pok.name | titlecase}}</ion-label>
+      <ion-button routerLink="/detail/{{pok.id}}">View</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

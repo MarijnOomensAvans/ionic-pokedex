@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Catch nearby pokemon
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div id="map" style="height: 50%;" ></div>
+
+
+  <ion-list id="container">
+    <ion-text class="ion-text-center">
+      <h4>Nearby pokemon</h4>
+    </ion-text>
+    <ion-item style="margin-right: 5%" *ngFor="let pokemon of nearbyPokemon">
+      <ion-label>{{pokemon.name | titlecase}}</ion-label>
+      <ion-button (click)="startCatch(pokemon.id)">Catch</ion-button>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

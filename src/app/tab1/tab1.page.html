@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Pokemon
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  
+  <ion-refresher (ionRefresh)="doRefresh($event)" slot="fixed">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div id="error"></div>
+  
+  <ion-list id="container">
+        <ion-reorder-group id="ordercontainer" (ionItemReorder)="doReorder($event)" disabled="false">
+          <div *ngFor="let pokemon of allPokemon">
+          <ion-card (click)="goToDetails(pokemon?.id)" >
+            <ion-reorder>
+              <ion-chip>
+              </ion-chip>
+            </ion-reorder>
+            <ion-card-header>
+              <ion-card-title>{{ pokemon?.name | titlecase }}</ion-card-title>
+            </ion-card-header>       
+            <img src="{{ pokemon?.front_default }}">
+            <ion-chip color="primary" *ngFor="let t of pokemon?.types">
+              <ion-label>{{ t.type.name }}</ion-label>
+            </ion-chip>
+          </ion-card>
+       
+        </div>
+        </ion-reorder-group>
+  </ion-list>
+  
+  <ion-infinite-scroll id="scroll" threshold="100px" (ionInfinite)="loadMorePokemon($event)">
+    <ion-infinite-scroll-content>
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

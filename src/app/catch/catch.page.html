@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Catch pokemon</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content" *ngIf="pokemon">
+    <h3 class="ion-text-center">You are about to catch: {{pokemon.name | titlecase}}</h3>
+    <ion-img class="pokemon-img" [src]="pokemon.front_default"></ion-img>
+  </div>
+
+  <div>
+    <ion-button (click)="catch()">Catch (chance: {{chance}}%)</ion-button>
+  </div>
+
+  <div *ngIf="catchMessage">
+    {{catchMessage}}
+  </div>
+</ion-content>

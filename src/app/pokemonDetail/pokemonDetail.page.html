@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">{{ pokemon?.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+
+      <img id="image">
+      <div *ngIf="pokemon">
+      <ion-slides pager="true" [options]="slideOpts">
+        <ion-slide>
+          <img src="{{ pokemon.front_default }}" style="height: 250px;">
+        </ion-slide>
+        <ion-slide>
+          <img src="{{ pokemon.front_shiny }}" style="height: 250px;">
+        </ion-slide>
+        <ion-slide>
+          <img src="{{ pokemon.back_default }}" style="height: 250px;">
+        </ion-slide>
+        <ion-slide>
+          <img src="{{ pokemon.back_shiny }}" style="height: 250px;">
+        </ion-slide>
+      </ion-slides>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title class="ion-text-capitalize">#{{ pokemon?.id }} {{ pokemon?.name }}
+            <ion-chip color="primary" *ngFor="let t of pokemon?.types">
+              <ion-label>{{ t.type.name }}</ion-label>
+            </ion-chip>
+          </ion-card-title>
+        </ion-card-header>
+   
+        <ion-card-content>
+          <ion-list lines="full">
+            <ion-item *ngFor="let m of pokemon?.moves" class="ion-text-capitalize">
+              <ion-label slot="start"><b>{{ m.move.name }} </b></ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  
+  </ion-content>

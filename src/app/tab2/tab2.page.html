@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Items
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+<form id="newItemForm" (ngSubmit)="addItem()" hidden="true">
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+    <ion-item>
+      <ion-label position="stacked">Title <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input id="newtitle" [(ngModel)]="title" name="title" type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description <ion-text color="danger">*</ion-text></ion-label>
+      <ion-input id="description" [(ngModel)]="description" name="description" type="text" required></ion-input>
+    </ion-item>
+  </ion-list>
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin">Create item</ion-button>
+    </div>
+  </form>
+
+  <ion-list id="itemcontainer">
+    <ion-card *ngFor="let item of allItems; ">
+      <ion-card-header>
+        <ion-card-title>{{ item?.name }}</ion-card-title>
+        <ion-button (click)="takePhoto(item?.id)">
+          <ion-icon name="camera"></ion-icon>
+        </ion-button>
+        <ion-button (click)="editItem(item?.id)">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteItem(item?.id)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-textarea id="description {{ item?.id }}" disabled="true" value="{{ item?.description }}">     
+        </ion-textarea>
+        <img id="photo {{ item?.id }}" src="{{ item?.photo?.base64 ? item?.photo?.base64 : item?.photo?.webviewPath }}" >
+      </ion-card-content>
+    </ion-card>
+    
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+
+    <ion-fab-button (click)="addNewItemUI()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>
